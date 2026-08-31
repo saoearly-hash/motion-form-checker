@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>モーションフォームチェック</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <h1>モーションフォームチェック</h1>
+    <label class="file-btn">
+      動画を選択
+      <input type="file" id="fileInput" accept="video/*" hidden>
+    </label>
+  </header>
+
+  <main class="stage-wrap" id="stageWrap">
+    <div id="stage" class="stage">
+      <video id="video" playsinline preload="metadata"></video>
+      <canvas id="skeletonCanvas"></canvas>
+      <canvas id="annotationCanvas"></canvas>
+      <div id="emptyState" class="empty-state">
+        上の「動画を選択」から、解析したい動画ファイルを選んでください
+      </div>
+      <div id="status" class="status-banner" hidden></div>
+      <div id="personHint" class="person-hint" hidden>
+        <span id="personHintText"></span>
+        <button id="personResetBtn" class="mini-btn" hidden>対象をリセット</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="controls">
+    <div class="row playback-row">
+      <button id="playPauseBtn" class="btn" disabled>▶ 再生</button>
+      <button id="muteBtn" class="btn icon-btn" disabled title="音声のオン/オフ">🔊</button>
+      <input id="seek" type="range" min="0" max="0" step="0.01" value="0" class="seek" disabled>
+    </div>
+
+    <div class="row toggle-row">
+      <label class="switch">
+        <input type="checkbox" id="skeletonToggle" checked>
+        <span class="slider"></span>
+        <span class="switch-label">骨格検知</span>
+      </label>
+      <label class="switch">
+        <input type="checkbox" id="drawToggle">
+        <span class="slider"></span>
+        <span class="switch-label">描画モード</span>
+      </label>
+    </div>
+
+    <div class="row toolbar" id="toolbar" hidden>
+      <button id="toolPen" class="tool-btn active" title="ペン">✏ ペン</button>
+      <button id="toolText" class="tool-btn" title="文字">🅰 文字</button>
+      <input type="color" id="colorPicker" value="#ff3b30" title="色">
+      <button id="undoBtn" class="btn ghost">戻す</button>
+      <button id="clearBtn" class="btn ghost">全消去</button>
+      <button id="saveBtn" class="btn primary">画像を保存</button>
+    </div>
+  </footer>
+
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
