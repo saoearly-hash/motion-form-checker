@@ -46,7 +46,7 @@ let lastVideoTime = -1;
 
 let currentTool = "pen";
 let currentColor = "#ff3b30";
-const strokeWidth = 4;
+let strokeWidth = 10;
 let history = [];
 let currentPath = null;
 let pointerActive = false;
@@ -112,6 +112,7 @@ els.video.addEventListener("loadedmetadata", () => {
   els.annotationCanvas.width = w;
   els.annotationCanvas.height = h;
   els.seek.max = els.video.duration || 0;
+  strokeWidth = Math.max(10, Math.round(w / 130));
   clearAnnotations();
   updateStageSize();
   lastPoses = [];
